@@ -6,8 +6,10 @@
     private: false # not confidential
   - name: trainer
     prompt: please enter the trainer name
+    private: false
   - name: duration
     prompt: please enter the duration
+    private: false
   tasks:
   - name: print the course info
     ansible.builtin.debug:
