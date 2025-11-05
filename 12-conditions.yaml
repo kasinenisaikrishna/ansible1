@@ -9,8 +9,7 @@
   - name: print this if number is less than 10
     ansible.builtin.debug:
       msg: "given number {{ my_number }} is less than 10"
-    when: my_number | int < 10 # conditional expression
-
+    when: my_number | int < 10 # conditional expression what ever we give in prompt ansible consider it as string and for expressions we need numbers hence we need to convert given number by user to int using piping
   - name: print this if number is greater than or equal to 10
     ansible.builtin.debug:
       msg: "given number {{ my_number }} is greater than or equal to 10"
