@@ -5,3 +5,15 @@
   - name: print the default variable
     ansible.builtin.debug: #debug module is used to print the message
       msg: "Hello {{ course | default('Ansible') }}"
+
+  - name: convert to upper 
+    vars:
+      greeting: "hello ramesh"
+    ansible.builtin.debug:
+      msg: " {{ greeting | upper }} "
+
+  - name: convert to lower
+    vars: 
+      greeting: "hello ramesh"
+    ansible.builtin.debug:
+      msg: " {{ greeting | lower }} "
