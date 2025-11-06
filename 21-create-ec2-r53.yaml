@@ -36,7 +36,7 @@
       ttl: 1
       value: "{{ item.instances[0].private_ip_address }}" #collecting private ip one by one eg: first we get private ip of mysql then backend and last frontend
       wait: true
-      overwrite: true
+      overwrite: true #previous records will be overwritten
     loop: "{{ ec2_instances.result }}"
 
   - name: create r53 public record for frontend
@@ -46,7 +46,7 @@
       record: "{{ zone }}" #dawsconnect.org
       type: A
       ttl: 1
-      value: "{{ item.instances[0].public_ip_address }}"
+      value: "{{ item.instances[0].public_ip_address }}" #we need to copy the output to notepad++ and change version to json and look into these values for better understanding
       wait: true
       overwrite: true
     loop: "{{ ec2_instances.result }}"
