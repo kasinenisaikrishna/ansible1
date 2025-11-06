@@ -6,6 +6,10 @@
     ansible.builtin.shell: ls -ltr > /tmp/output.txt #login to the server and execute command 
     #command module, just issues the command
 
+  - name: execute the command
+    ansible.builtin.shell: ps -ef | grep ssh
+    register: output
+
   - name: check the process
-    ansible.builtin.command: ps -ef | grep ssh #this will not execute because we are using pipeing for these complex commands we have to use only shell module
+    ansible.builtin.command: ps -ef | grep ssh #this will not execute because we are using pipeing for these complex commands we have to use only shell module only
     register: output
