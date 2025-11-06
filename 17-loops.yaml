@@ -4,7 +4,7 @@
   tasks: 
   - name: installing packages
     ansible.builtin.package:
-      name: "{{ item }}"
+      name: "{{ item }}" #item will collect the elements one by one from loop we declared below 1st time we get nginx and so on ...
       state: present
     loop:
     - nginx
