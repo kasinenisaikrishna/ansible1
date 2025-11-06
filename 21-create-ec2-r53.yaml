@@ -30,7 +30,7 @@
     amazon.aws.route53: # module to create r53 records
       state: present
       zone: "{{ zone }}"
-      record: "{{  }}"
+      record: "{{ item.item }}.{{ zone }}" #mysql.dawsconnect.org
       type: A
       ttl: 1
       value: "{{ item.instances[0].private_ip_address }}"
