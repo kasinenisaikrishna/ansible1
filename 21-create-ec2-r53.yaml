@@ -24,3 +24,7 @@
   - name: print the output #printing this to know the output of the servers in order to collect private and public ip addresses
     ansible.builtin.debug:
       msg: "{{ ec2_instances }}" #from this output we need to collect ip addresses for r53 records
+  
+  - name: create r53 records:
+    amazon.aws.route53: # module to create r53 records
+    
