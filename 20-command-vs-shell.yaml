@@ -3,4 +3,4 @@
   connection: local
   tasks:
   - name: execute the command
-    ansible.builtin.shell: ls -ltr > /tmp/output.txt #as this is redirection command command module will not work hence we need to use ansible.builtin.shell
+    ansible.builtin.shell: ls -ltr > /tmp/output.txt #login to the server and execute command
