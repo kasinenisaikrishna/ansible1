@@ -25,15 +25,29 @@
   - name: print the output #printing this to know the output of the servers in order to collect private and public ip addresses
     ansible.builtin.debug:
       msg: "{{ ec2_instances }}" #from this output we need to collect ip addresses for r53 records
-  
-  - name: create r53 records
+
+#private IP 53
+  - name: create r53 private records
     amazon.aws.route53: # module to create r53 records
       state: present
       zone: "{{ zone }}"
       record: "{{ item.item }}.{{ zone }}" #mysql.dawsconnect.org
       type: A
       ttl: 1
-      value: "{{ item.instances[0].private_ip_address }}"
+      value: "{{ item.instances[0].private_ip_address }}" #collecting private ip one by one eg: first we get private ip of mysql then backend and last frontend
       wait: true
       overwrite: true
     loop: "{{ ec2_instances.result }}"
+
+  - name: create r53 public record for frontend
+    amazon.aws.route53: # module to create r53 records
+      state: present
+      zone: "{{ zone }}"
+      record: "{{ item.item }}.{{ zone }}" #frontend.dawsconnect.org
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].public_ip_address }}"
+      wait: true
+      overwrite: true
+    loop: "{{ ec2_instances.result }}"
+    when: ec2_instances.result.item == "frontend"
