@@ -25,6 +25,7 @@
     ansible.builtin.debug:
       msg: "{{ ec2_instances }}" #from this output we need to collect ip addresses for r53 records
   
-  - name: create r53 records:
+  - name: create r53 records
     amazon.aws.route53: # module to create r53 records
-    
+
+    loop: "{{ ec2_instances.result }}"
