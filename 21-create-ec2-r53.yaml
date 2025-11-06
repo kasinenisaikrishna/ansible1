@@ -19,3 +19,4 @@
       image_id: "{{ ami_id }}"
     loop: "{{ instances }}" #as we need to create 3 instances for expense project
 # for r53 records we need private and public ip addresses which we will get from above code only i.e. from tasks after creating it will give many values inclusive of ip addresses in return 
+    register: ec2_instances #register is the keyword to catch the output
