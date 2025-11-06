@@ -7,5 +7,5 @@
     #command module, just issues the command
 
   - name: check the process
-    ansible.builtin.command: ps -ef | grep ssh
+    ansible.builtin.command: ps -ef | grep ssh #this will not execute because we are using pipeing for these complex commands we have to use only shell module
     register: output
