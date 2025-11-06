@@ -1,0 +1,7 @@
+- name: demo on filters/functions
+  hosts: local
+  connection: local
+  tasks:
+  - name: print the default variable
+    ansible.builtin.debug: #debug module is used to print the message
+      msg: "Hello {{ course | default('Ansible') }}"
