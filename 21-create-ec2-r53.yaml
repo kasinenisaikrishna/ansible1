@@ -21,6 +21,6 @@
 # for r53 records we need private and public ip addresses which we will get from above code only i.e. from tasks after creating it will give many values inclusive of ip addresses in return 
     register: ec2_instances #register is the keyword to catch the output
 
-  - name: print the output
+  - name: print the output #printing this to know the output of the servers in order to collect private and public ip addresses
     ansible.builtin.debug:
-      msg: "output: {{ ec2_instances }}"
+      msg: "{{ ec2_instances }}"
