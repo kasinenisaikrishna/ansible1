@@ -1,0 +1,21 @@
+- name: create ec2 and r53 records
+  hosts: local
+  connection: local
+  vars:
+    subnet_id: subnet-0cdb6ea5293f1a031 #from aws server networking subnetID
+    sg_id: "sg-001c2affbe1e077cf" #from aws server security security groups
+    ami_id: "ami-09c813fb71547fc4f" #from aws server details ami id it will be changing need to note the same
+    instances:
+    - mysql
+    - backend
+    - frontend
+  tasks:
+  - name: create ec2 instance
+    amazon.aws.ec2_instance: #module to create ec2 instance
+      name: "{{ item }}"
+      vpc_subnet_id: "{{ subnet_id }}"
+      instance_type: "t3.micro"
+      security_group: "{{ sg_id }}"
+      image_id: "{{ ami_id }}"
+    loop: "{{ instances }}" #as we need to create 3 instances for expense project
+# for r53 records we need private and public ip addresses which we will get from above code only i.e. from tasks after creating it will give many values inclusive of ip addresses in return 
